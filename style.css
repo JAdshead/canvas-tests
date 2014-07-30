@@ -1,0 +1,16 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: #bbb;
+}
+div{
+  width: 100%;
+  height: 100%;
+}
+#canvas {
+  border: 4px solid black ;
+  margin: 40px;
+  background-color: #fff;
+}
