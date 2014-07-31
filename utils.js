@@ -63,6 +63,15 @@ utils.captureTouch = function (element) {
 };
 
 
+// Convertion Formula
+// 
+// radians = degrees * Math.PI / 180
+// degrees = radians * 180 / Math.PI
+// 
+// 
+// 
+// 
+// 
 
 
 

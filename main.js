@@ -18,6 +18,7 @@ window.onload = function () {
   function onTouchEvent (event) {
     if (touch.isPressed) {
       console.log("x: "+ touch.x+", y: "+touch.y);
+
     }
   };
 
@@ -28,3 +29,13 @@ window.onload = function () {
   
 
 };  
+
+
+
+
+
+
+
+
+
+
