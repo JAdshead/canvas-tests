@@ -1,32 +1,25 @@
 window.onload = function () {
 
   var canvas  = document.getElementById('canvas'), 
-      contain = document.getElementById('container'),
       context = canvas.getContext('2d'),
       mouse   = utils.captureMouse(canvas),
-      touch   = utils.captureTouch(contain),
-      arrow   = new Arrow(); 
-     
-  arrow.x = canvas.width  / 2;
-  arrow.y = canvas.height / 2;
+      ball    = new Ball(80),
+      bounce  = 100,
+      angle   = 0;
 
-  (function drawFrame() {
+  ball.x = 0;
+  ball.y = canvas.height/ 2;
+
+  (function drawFrame(){
     window.requestAnimationFrame(drawFrame, canvas);
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-
-    var dx = mouse.x - arrow.x,
-        dy = mouse.y - arrow.y;
-
-    if (touch.isPressed) {
-      dx = touch.x - arrow.x,
-      dy = touch.y - arrow.y;
-    };
-
-    var radians = Math.atan(dy/dx);
-    arrow.rotation = radians;
-    arrow.draw(context);
+    ball.x += 0.5;
+    ball.y = canvas.height / 2 + Math.sin(angle) * bounce;
+    angle   += 0.05;
+    ball.draw(context);
   }());
+
 };  
 
 
