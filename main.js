@@ -1,33 +1,32 @@
 window.onload = function () {
-  var frame = 0;
 
-  // Trigger animation using requestAnimationFrame not setInterval()
-  // (function drawFrame() {
-  //   window.requestAnimationFrame(drawFrame, canvas);
-  // }());
+  var canvas  = document.getElementById('canvas'), 
+      contain = document.getElementById('container'),
+      context = canvas.getContext('2d'),
+      mouse   = utils.captureMouse(canvas),
+      touch   = utils.captureTouch(contain),
+      arrow   = new Arrow(); 
+     
+  arrow.x = canvas.width  / 2;
+  arrow.y = canvas.height / 2;
 
-  var canvas = document.getElementById('canvas'), 
-      mouse = utils.captureMouse(canvas),
-      touch = utils.captureTouch(canvas);
-
-  canvas.addEventListener('mousedown', function () {
-    console.log("x:  " + mouse.x +", y: "+mouse.y);
-  }, false);
+  (function drawFrame() {
+    window.requestAnimationFrame(drawFrame, canvas);
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
 
-  function onTouchEvent (event) {
+    var dx = mouse.x - arrow.x,
+        dy = mouse.y - arrow.y;
+
     if (touch.isPressed) {
-      console.log("x: "+ touch.x+", y: "+touch.y);
+      dx = touch.x - arrow.x,
+      dy = touch.y - arrow.y;
+    };
 
-    }
-  };
-
-  canvas.addEventListener('touchstart', onTouchEvent, false);
-  canvas.addEventListener('touchend', onTouchEvent, false);
-  canvas.addEventListener('touchmove', onTouchEvent, false);
-
-  
-
+    var radians = Math.atan(dy/dx);
+    arrow.rotation = radians;
+    arrow.draw(context);
+  }());
 };  
 
 
